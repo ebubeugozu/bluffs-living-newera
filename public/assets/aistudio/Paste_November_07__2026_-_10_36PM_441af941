@@ -1,0 +1,897 @@
+# MASTER WEBSITE BUILD PROMPT — THE BLUFFS AT NEW ERA
+
+## 1. Project Overview
+
+Design and build a complete, premium, modern, responsive website for **The Bluffs at New Era**, a boutique tiny-home community located in Linden, Tennessee, overlooking the Tennessee River.
+
+Website: **https://bluffsnewera.com**
+
+The property spans approximately 140 acres, features approximately half a mile of Tennessee River frontage, private homesites, natural landscapes, trails, community amenities, and opportunities for residents to enjoy a quieter, nature-centered lifestyle.
+
+This is not an ordinary tiny-home park website. The website must position The Bluffs as a distinctive, carefully designed private community that combines nature, privacy, comfort, community, and a refined living experience.
+
+The website should communicate the feeling of arriving at a beautiful private retreat: expansive land, peaceful surroundings, thoughtful amenities, scenic views, and a welcoming community.
+
+**Primary objective:** Present the property and its lifestyle in a compelling way, help prospective residents understand the community, and convert qualified visitors into inquiries, tour requests, and applications.
+
+**Secondary objectives:**
+- Showcase the property's natural beauty and conservation features.
+- Give visitors an accurate understanding of the property through an interactive map.
+- Explain amenities and available resident services.
+- Provide information about local attractions, transportation, and distances.
+- Display the community overview and pitch deck.
+- Provide a dedicated live Eagle Cam experience.
+- Collect inquiries and applications in an organized way.
+- Support future resident communication and document management.
+
+Do not build a generic real estate template. Create a distinctive digital experience that feels like a premium hospitality, private residential community, and nature retreat brand.
+
+---
+
+## 2. Brand Identity and Visual Direction
+
+### Overall aesthetic
+
+Create an elegant, editorial, nature-inspired design.
+
+The visual experience should feel:
+- Premium but welcoming.
+- Peaceful, spacious, and refined.
+- Natural and authentic.
+- Modern without looking overly corporate.
+- Sophisticated without feeling inaccessible.
+- Immersive, with strong photography and generous whitespace.
+
+Use an editorial layout inspired by high-end nature resorts, boutique residential communities, luxury countryside retreats, and architectural publications.
+
+Avoid:
+- Generic real estate templates.
+- Overused gradients.
+- Excessive rounded cards.
+- Bright, artificial colors.
+- Crowded layouts.
+- Stock photography that does not represent the actual property.
+- Excessive animations and distracting effects.
+- Cheap-looking icons and decorative elements.
+
+### Color palette
+
+Use the following brand colors:
+
+- Deep Forest Green: #183B2B
+- Dark Evergreen: #10291F
+- Warm Ivory: #F7F4EC
+- Muted Sage: #A6B49A
+- Natural Beige: #D9D0BF
+- Soft Bronze: #B28B5B
+- White: #FFFFFF
+- Charcoal: #303630
+
+Use forest green for primary navigation, buttons, and important brand elements. Use ivory and warm neutral backgrounds for content sections. Use sage and bronze sparingly for accents.
+
+### Typography
+
+Use:
+- Cormorant Garamond or Playfair Display for headings.
+- Inter or Manrope for body text, navigation, buttons, and forms.
+
+Headings should feel elegant and editorial. Body text must be readable and easy to scan.
+
+### Photography
+
+Prioritize actual property photographs, aerial images, videos, and other visual materials supplied by the client.
+
+Use real images of:
+- The property entrance and driveway.
+- The Tennessee River and river frontage.
+- Forests, trails, and natural landscapes.
+- Homesites and property roads.
+- Gardens and community areas.
+- Scenic overlooks.
+- Wildlife and birds.
+- Existing amenities and property features.
+
+Do not use unrelated stock photos as if they represent the property. If an actual photograph is unavailable, use a neutral placeholder that can be replaced later.
+
+Images should be high quality, properly cropped, optimized, and displayed consistently.
+
+Use immersive full-width photography for major sections, but balance this with clean editorial layouts.
+
+---
+
+## 3. Website Navigation and Site Structure
+
+Create a clean, premium navigation system with the following primary pages:
+
+1. Home
+2. About
+3. Conservation Study
+4. Interactive Map
+5. Amenities
+6. Eagle Cam
+7. Events
+8. Transportation & Distances
+9. Community Overview / Pitch Deck
+10. Request Information
+11. Apply
+
+The navigation should remain easy to use on desktop, tablet, and mobile.
+
+Use a refined sticky header with:
+- The Bluffs at New Era logo.
+- Main navigation.
+- A prominent **Request Information** button.
+- A prominent **Apply** button.
+
+On mobile, use a clean collapsible navigation menu.
+
+The Request Information and Apply buttons should lead to their respective dedicated pages.
+
+---
+
+## 4. Homepage
+
+The homepage should introduce the property and communicate its lifestyle immediately.
+
+### Hero section
+
+Create a visually striking, full-width hero section using an authentic photograph or video of The Bluffs property.
+
+Use a cinematic image treatment with subtle dark overlays where necessary to maintain text readability.
+
+Suggested headline:
+
+**A Different Way to Experience Life.**
+
+Supporting copy:
+
+"Discover a private community where nature, comfort, and connection come together across the beautiful landscapes of Tennessee."
+
+Location label:
+
+THE BLUFFS AT NEW ERA  
+LINDEN, TENNESSEE
+
+Primary button: **Explore the Community**
+
+Secondary button: **Request Information**
+
+Do not make the hero feel like a conventional real estate advertisement.
+
+### Property introduction
+
+Heading:
+
+**More Than a Place to Live. A Place to Belong.**
+
+Introduce The Bluffs as a nature-focused community designed around privacy, open space, thoughtful amenities, and an appreciation for the surrounding environment.
+
+Highlight the property's scale and natural setting.
+
+### Property highlights
+
+Create an elegant statistics section using verified information from the client's materials.
+
+Potential highlights:
+- Approximately 140 acres.
+- Approximately ½ mile of Tennessee River frontage.
+- Homesite lots of 6,000+ square feet.
+- A community of 30+ residents.
+
+Do not publish conflicting home or homesite counts. Some client materials contain different figures for the number of homes and lots. Leave that figure out until the final number is confirmed.
+
+### Explore the property
+
+Introduce the Interactive Map with a visually appealing aerial preview.
+
+Heading:
+
+**Explore the Land. Discover the Possibilities.**
+
+Button: **Explore the Interactive Map**
+
+### Amenities preview
+
+Showcase selected amenities in an elegant image-and-text layout.
+
+Include a link to the full Amenities page.
+
+### Conservation preview
+
+Introduce the property's conservation story and the importance of preserving its natural surroundings.
+
+Button: **Discover Our Conservation Study**
+
+### Lifestyle and experiences
+
+Showcase the outdoor experience:
+- Trails and nature exploration.
+- Tennessee River access and fishing opportunities.
+- Gardens and community activities.
+- Wildlife and birdwatching.
+- Scenic overlooks.
+- Community gatherings and events.
+
+Use real property photography.
+
+### Eagle Cam preview
+
+Create a distinctive homepage feature introducing the Eagle Cam.
+
+Suggested heading:
+
+**A Window Into the Wild.**
+
+Supporting copy:
+
+"Experience the natural world surrounding The Bluffs through our Eagle Cam."
+
+Button: **Watch the Live Cam**
+
+The button must open the dedicated Eagle Cam page.
+
+### Community overview preview
+
+Introduce the official community overview and pitch deck.
+
+Button: **View Community Overview**
+
+### Final call to action
+
+Heading:
+
+**Your Next Chapter Could Begin Here.**
+
+Supporting copy:
+
+"Interested in discovering life at The Bluffs? Connect with our team to learn more about the community, homesite opportunities, and application process."
+
+Buttons:
+- Request Information
+- Apply
+
+---
+
+## 5. About Page
+
+Create a dedicated About page explaining the identity, vision, and philosophy behind The Bluffs at New Era.
+
+Suggested heading:
+
+**A Community Rooted in Nature. Designed for Living.**
+
+Explain:
+- The vision behind the community.
+- The property's location in Linden, Tennessee.
+- The approximately 140-acre natural setting.
+- The Tennessee River frontage.
+- The emphasis on privacy, open space, and community.
+- The intention to offer a distinctive living experience.
+- The balance between thoughtful development and respect for the natural environment.
+
+Use large photographs, editorial storytelling, and elegant layouts.
+
+Include a section introducing the property and its surroundings.
+
+Do not invent the founders' personal stories, company history, awards, or claims that have not been supplied by the client.
+
+---
+
+## 6. Conservation Study Page
+
+This page is important because it demonstrates the property's natural character and conservation considerations.
+
+Create a dedicated Conservation Study page using the actual conservation study and supporting property materials supplied by the client.
+
+Suggested heading:
+
+**Preserving the Land. Respecting the Landscape.**
+
+The page should:
+- Introduce the conservation study.
+- Explain its purpose using information from the actual document.
+- Showcase relevant maps, photographs, and property features.
+- Present relevant findings in organized sections.
+- Allow visitors to view or download the study if the client has authorized public distribution.
+- Use diagrams, document previews, and photography where appropriate.
+
+Important:
+Do not invent conservation findings, protected species, environmental certifications, ecological statistics, or legal protections.
+
+Use the supplied study as the factual source. If the document is not available for public viewing, create the page structure and leave the document section ready for the approved version.
+
+---
+
+## 7. Interactive Map Page
+
+This should be one of the most impressive and useful features of the website.
+
+Suggested heading:
+
+**Explore the Bluffs.**
+
+Supporting copy:
+
+"Discover the landscape, amenities, and natural features that make this community distinctive."
+
+Build an interactive property map using the client's actual aerial photographs, site plan, annotated maps, and other supplied materials.
+
+The map should communicate the scale and layout of the approximately 140-acre property.
+
+### Map functionality
+
+Include:
+- Zoom in and zoom out.
+- Pan and explore.
+- Clearly labeled points of interest.
+- Clickable map markers.
+- Information panels or popups.
+- Optional category filters.
+- A corresponding list of map locations.
+
+Potential map categories and markers:
+- Property entrance and gate.
+- Homesites.
+- Standard and premium home pads.
+- Tennessee River frontage.
+- Trails.
+- Garden area.
+- Chicken coop area.
+- Apiary.
+- Fire-circle area.
+- Helipad.
+- Scenic overlooks.
+- Eagle's Nest / Eagle Cam location.
+- Community gathering areas.
+- Roads and access routes.
+
+Each marker should open a panel containing:
+- Location name.
+- Short description.
+- Relevant photograph, when available.
+- Additional information, where appropriate.
+
+### Map accuracy requirements
+
+Use the actual property map and client-supplied location references as the source of truth.
+
+Do not invent marker positions, road layouts, homesite boundaries, distances, or property features.
+
+If the exact location of a feature is uncertain, use a clearly identified provisional marker and keep it unpublished until verified.
+
+The map should be visually polished, intuitive, responsive, and easy for visitors to understand.
+
+If the original map is an aerial image, preserve its geographic orientation and recognizable landmarks. Do not distort the actual property layout to make the design look attractive.
+
+---
+
+## 8. Amenities Page
+
+Suggested heading:
+
+**Thoughtfully Considered. Naturally Enjoyed.**
+
+Create an elegant amenities page that explains the services and features available to residents.
+
+Organize the information into clear categories.
+
+### Utilities and everyday convenience
+
+Include, where confirmed in the client materials:
+- City water.
+- Underground electricity.
+- High-speed fiber internet.
+- Weekly garbage collection.
+- Mail and package delivery.
+- Utility arrangements described in the community materials.
+
+### Property and resident services
+
+Include:
+- Grounds maintenance.
+- Road and trail maintenance.
+- Home stewardship.
+- Onsite management.
+- Resident support services.
+
+### Nature and outdoor amenities
+
+Include:
+- Tennessee River frontage.
+- Walking and nature trails.
+- Gardens.
+- Chicken coops.
+- Apiary.
+- Scenic overlooks.
+- Wildlife and birdwatching opportunities.
+- Fire-circle area.
+- Eagle's Nest camera.
+
+### Additional and optional amenities
+
+Clearly distinguish optional, proposed, or future amenities from amenities already included.
+
+Potential examples from the client materials:
+- Horse boarding.
+- Small livestock area.
+- Hobby barns.
+- Storage barns.
+- Workshops.
+
+Do not present proposed or optional amenities as guaranteed, currently available, or included in standard resident services.
+
+### Emergency and medical support information
+
+Present the helipad and LifeFlight membership information carefully, using the client's approved wording and terms.
+
+Do not imply that a helipad guarantees emergency medical access or that a medical membership replaces emergency services.
+
+Use clear disclaimers wherever required by the original client materials.
+
+---
+
+## 9. Eagle Cam Page — Live Experience
+
+Create a dedicated page called **Eagle Cam**.
+
+This is a key feature and should feel like a special part of the website rather than an ordinary video section.
+
+Suggested heading:
+
+**The Eagle's Nest. Live From The Bluffs.**
+
+Supporting copy:
+
+"Take a closer look at the natural world surrounding The Bluffs through our live camera experience."
+
+### Live camera functionality
+
+Build a prominent video player area designed to display the client's actual live Eagle Cam stream.
+
+The player should support the appropriate live streaming or embed format supplied by the client.
+
+Include:
+- A large responsive live video player.
+- A clear LIVE indicator when the feed is actually broadcasting.
+- A full-screen option if supported.
+- A short introduction to the camera.
+- A fallback state if the stream is temporarily offline.
+- A message such as "The live camera feed is temporarily unavailable. Please check back soon."
+
+Do not simulate a live stream using a prerecorded video.
+
+Do not display a LIVE badge when the feed is not actually live.
+
+If the camera is unavailable during initial development, create a clean placeholder with the video integration ready for the real stream URL or embed code.
+
+The page should also be visually connected to the property's natural environment.
+
+---
+
+## 10. Events Page
+
+Suggested heading:
+
+**Life at The Bluffs. Together.**
+
+Create an Events page where visitors can discover community activities and gatherings.
+
+The design should support:
+- Upcoming events.
+- Event dates and times.
+- Event descriptions.
+- Event photographs.
+- Location information.
+- Event status.
+- Past events or an archive.
+
+Use a clean event listing layout with an option to view individual event details.
+
+Build the page so the client can add, edit, and remove events through the website's content management system.
+
+Do not invent event dates, activities, or schedules.
+
+If no confirmed events are available at launch, display a tasteful introductory message rather than fabricated event listings.
+
+---
+
+## 11. Transportation & Distances Page
+
+Create a page explaining the property's location, accessibility, transportation options, and nearby destinations.
+
+Suggested heading:
+
+**Connected to What Matters. Surrounded by What Matters More.**
+
+Include:
+- Property location in Linden, Tennessee.
+- Relevant driving routes.
+- Nearby towns and destinations.
+- Shopping and essential services.
+- Airports.
+- Medical facilities, where verified.
+- Outdoor recreation and attractions.
+- Nearby fishing opportunities and public boat launch information, where verified.
+
+Use an elegant distance-and-destination layout.
+
+Where appropriate, include:
+- Destination name.
+- Verified driving distance.
+- Estimated driving time.
+- Short description.
+- Link to directions or the destination's official website.
+
+Use a map or location overview to help visitors understand the surrounding area.
+
+### SCATS reference
+
+The handwritten client page list includes the term **SCATS** alongside Transportation / Distances.
+
+Preserve this as a client-supplied reference until its intended meaning and content are confirmed. Do not invent an expansion or explanation for the acronym.
+
+If its meaning is not yet established, keep the corresponding section unpublished or marked as an internal placeholder.
+
+Never invent distances, travel times, transportation services, or local statistics. Verify them before publishing.
+
+---
+
+## 12. Community Overview / Pitch Deck Page
+
+Create a dedicated page where visitors can learn more about The Bluffs through the official community overview and pitch deck.
+
+Suggested heading:
+
+**Discover the Community.**
+
+Supporting copy:
+
+"Explore the vision, property, amenities, and opportunities that make The Bluffs at New Era unique."
+
+Include:
+- A brief introduction.
+- A visually appealing pitch deck preview.
+- A document viewer if supported.
+- A clear button to view the presentation.
+- A download option if the client approves public downloads.
+
+Use the latest client-approved pitch deck.
+
+Do not display outdated or conflicting statistics from older versions of the presentation.
+
+If the deck contains information intended only for private or prospective-resident conversations, confirm its public availability before publishing it.
+
+---
+
+## 13. Request Information Page
+
+Create a dedicated inquiry page.
+
+Suggested heading:
+
+**Let's Start a Conversation.**
+
+Supporting copy:
+
+"Have questions about The Bluffs at New Era? We'd be happy to help you learn more about the community and available opportunities."
+
+Create a professional inquiry form with the following fields:
+
+- Full name.
+- Email address.
+- Phone number (optional).
+- Inquiry type.
+- Message.
+
+Inquiry type options:
+- General information.
+- Homesite or leasing inquiry.
+- Rental opportunity.
+- Schedule a property tour.
+- Community amenities.
+- Other.
+
+Include a privacy notice and appropriate consent language.
+
+### Form functionality
+
+- Validate required fields.
+- Validate email format.
+- Prevent accidental duplicate submissions where practical.
+- Send submissions to the client's designated email address.
+- Store submissions in a secure website administration area.
+- Make submissions exportable to CSV or Excel.
+- Include submission date and inquiry type in the records.
+- Provide a clear confirmation only after the submission has actually been accepted.
+
+The official contact email is:
+
+**Info@bluffsnewera.com**
+
+Use this address for the website's email contact links and relevant notification settings.
+
+Do not use the client's previous email address.
+
+---
+
+## 14. Apply Page
+
+Create a separate application page for people interested in joining the community.
+
+Suggested heading:
+
+**Take the Next Step.**
+
+Supporting copy:
+
+"Interested in making The Bluffs your next home? Start the application process by sharing a little information with our team."
+
+Create a structured application form.
+
+Potential fields:
+- Full name.
+- Email address.
+- Phone number.
+- Preferred contact method.
+- Current city and state.
+- Type of interest.
+- Preferred homesite or living arrangement, if applicable.
+- Desired move-in timeframe.
+- Number of intended occupants.
+- Additional information.
+
+Include appropriate consent and privacy language.
+
+The form must:
+- Validate required fields.
+- Store submissions securely.
+- Notify the appropriate client contact.
+- Allow the administrator to review applications.
+- Support CSV or Excel export.
+- Keep applicant information private.
+
+Do not add payment checkout, application fees, deposits, or financial commitments unless the client explicitly requests them.
+
+Do not claim that submitting an application guarantees acceptance or availability.
+
+If the client later provides a formal application document or additional screening requirements, make the page adaptable.
+
+---
+
+## 15. Resident Portal and Document Management — Future-Ready
+
+Prepare the website architecture for a secure resident portal.
+
+The client has expressed interest in allowing residents to log in and access their individual lease documents and resident forms.
+
+Plan for:
+- Individual resident accounts.
+- Secure login.
+- Private document access.
+- Lease document storage.
+- Resident forms.
+- Future DocuSign integration for sending and receiving signed lease documents.
+
+Security is essential:
+- Residents must only be able to access their own authorized documents.
+- Public visitors must not access private resident records.
+- Uploaded documents must not be exposed through public media URLs.
+- Administrative permissions must be restricted appropriately.
+
+Do not create a fake portal or claim DocuSign integration is active until the actual integration has been configured and tested.
+
+This can be implemented as a later development phase without delaying the public-facing website.
+
+---
+
+## 16. Footer
+
+Create a consistent premium footer across the entire website.
+
+Include:
+- The Bluffs at New Era logo.
+- Linden, Tennessee.
+- Short brand statement.
+- Main navigation links.
+- Request Information.
+- Apply.
+- Email: Info@bluffsnewera.com.
+- Instagram: @bluffsnewera.
+- Facebook: @bluffsnewera.
+- Copyright notice.
+
+Use actual social profile destinations supplied by the client. Do not invent social URLs.
+
+The footer should use the same visual styling throughout the website.
+
+---
+
+## 17. Functional and Technical Requirements
+
+This must be a fully developed, responsive website, not just a static visual mockup.
+
+### Responsive design
+
+Optimize every page for:
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile phones.
+
+Pay particular attention to:
+- Navigation.
+- Hero images.
+- Interactive map.
+- Video player.
+- Forms.
+- Pitch deck viewer.
+- Event listings.
+- Footer.
+
+### WordPress compatibility
+
+The existing project is being developed on WordPress hosted through GoDaddy.
+
+Build the website in a way that can be implemented and maintained within WordPress.
+
+Use a clean, maintainable structure with reusable page sections and templates.
+
+The client should be able to update:
+- Text.
+- Images.
+- Events.
+- Amenities.
+- Map descriptions.
+- Community documents.
+- Contact information.
+
+Avoid unnecessary plugins and bloated functionality.
+
+Where custom development is required, organize it cleanly and document how the client can manage it.
+
+### Performance
+
+- Optimize image sizes.
+- Use modern image formats where supported.
+- Lazy-load below-the-fold images.
+- Avoid unnecessarily heavy animations.
+- Minimize unnecessary scripts.
+- Ensure fast page loading.
+- Keep the website stable on mobile connections.
+
+### SEO
+
+Set up strong SEO foundations:
+- Search-friendly page titles.
+- Meta descriptions.
+- Logical heading structure.
+- Descriptive image alt text.
+- Clean URL structure.
+- XML sitemap.
+- Internal linking.
+- Local SEO foundations for Linden, Tennessee.
+- Appropriate schema markup where relevant.
+- Search Console and analytics readiness.
+
+Suggested keyword themes should include:
+- The Bluffs at New Era.
+- Tiny home community in Tennessee.
+- Tiny home living in Tennessee.
+- Tiny home community near the Tennessee River.
+- Nature-focused community in Tennessee.
+- Tiny home homesites in Tennessee.
+
+Use keywords naturally. Do not stuff keywords into the content or guarantee search rankings.
+
+### Accessibility
+
+- Good color contrast.
+- Readable font sizes.
+- Keyboard-accessible navigation.
+- Clear form labels.
+- Descriptive buttons.
+- Appropriate image alt text.
+- Accessible video controls where supported.
+
+### Security
+
+- Secure form handling.
+- Spam protection.
+- SSL.
+- Proper administrator permissions.
+- Secure document handling.
+- Regular backup readiness.
+- Updated WordPress components.
+
+---
+
+## 18. Content and Accuracy Rules
+
+Use the client's supplied pitch deck, conservation study, aerial photographs, property maps, videos, annotated images, and other materials as the primary sources.
+
+Important details:
+- The property is approximately 140 acres.
+- It has approximately half a mile of Tennessee River frontage.
+- Homesite lots are described in client materials as 6,000+ square feet.
+- The community materials refer to 30+ residents.
+
+Some documents contain inconsistent figures for the number of homes or homesites. Do not publish a definitive count until the client confirms the correct figure.
+
+Also:
+- Distinguish included amenities from optional or proposed amenities.
+- Do not invent property boundaries or map locations.
+- Do not invent local distances or statistics.
+- Do not promise rental income or investment returns.
+- Do not make unsupported environmental or conservation claims.
+- Do not promise guaranteed medical response or emergency access.
+- Do not fabricate testimonials, awards, events, partnerships, or resident experiences.
+
+Where information is missing, build the relevant section with a clean placeholder rather than inventing facts.
+
+---
+
+## 19. Conversion and User Experience Strategy
+
+The website should guide visitors naturally toward three main actions:
+
+1. Explore the community.
+2. Request information.
+3. Apply.
+
+Place clear calls to action throughout the site without making the experience feel aggressive or sales-heavy.
+
+Use strong photography, concise storytelling, informative sections, and intuitive navigation.
+
+Visitors should be able to understand:
+- What The Bluffs is.
+- Where it is located.
+- What makes the property distinctive.
+- What amenities are available.
+- What the natural environment looks like.
+- What opportunities exist.
+- How to contact the team.
+- How to apply.
+
+---
+
+## 20. Final Design and Build Instructions
+
+Build the complete website with all the pages and functionality described above.
+
+Do not stop after creating the homepage.
+
+Create a consistent design system across every page, with:
+- Reusable typography and color styles.
+- Consistent buttons.
+- Consistent navigation.
+- Consistent footer.
+- Reusable content sections.
+- Professional spacing.
+- High-quality image treatments.
+- Responsive layouts.
+
+The website should look like a premium private nature community, not a generic tiny-home listing website.
+
+Use the client's actual property images wherever possible.
+
+Prioritize the homepage, About page, Conservation Study, Interactive Map, Amenities, and Eagle Cam as the core experience.
+
+Ensure the Request Information and Apply pages are easy to find and functional.
+
+Prepare the live Eagle Cam integration, but only display an actual live feed once the client's stream details are available.
+
+Prepare the resident portal and DocuSign functionality for a later phase rather than creating nonfunctional features.
+
+Before considering the website ready for launch, test:
+- Every navigation link.
+- Every CTA button.
+- All forms and notifications.
+- Email links using Info@bluffsnewera.com.
+- Mobile responsiveness.
+- Interactive map behavior.
+- Eagle Cam playback and offline state.
+- Pitch deck viewing.
+- Page loading speed.
+- Basic SEO and accessibility.
+
+The final result should feel like a premium digital representation of The Bluffs at New Era: a beautiful, informative, immersive, and trustworthy experience that makes prospective residents want to discover the property and take the next step.
