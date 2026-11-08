@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { PageId, InquirySubmission, ApplicationSubmission } from './types';
+import { PageId, InquirySubmission, ApplicationSubmission, PropertyItem } from './types';
+import { PROPERTY_LISTINGS, COMMUNITY_GALLERY_PHOTOS } from './data/communityData';
+
+// Shared Components
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { AdminDrawer } from './components/AdminDrawer';
 import { ResidentPortalModal } from './components/ResidentPortalModal';
+import { GalleryLightbox, LightboxImageItem } from './components/GalleryLightbox';
+import { PropertyQuickView } from './components/PropertyQuickView';
 
-// Pages
+// Existing Pages
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ConservationPage } from './pages/ConservationPage';
@@ -17,6 +22,15 @@ import { TransportationPage } from './pages/TransportationPage';
 import { PitchDeckPage } from './pages/PitchDeckPage';
 import { RequestInfoPage } from './pages/RequestInfoPage';
 import { ApplyPage } from './pages/ApplyPage';
+
+// New Pages
+import { PropertiesBrowsePage } from './pages/PropertiesBrowsePage';
+import { PropertyDetailPage } from './pages/PropertyDetailPage';
+import { GalleryPage } from './pages/GalleryPage';
+import { ResidentServicesPage } from './pages/ResidentServicesPage';
+import { ManagedRentalsPage } from './pages/ManagedRentalsPage';
+import { LocationPage } from './pages/LocationPage';
+import { TourSchedulePage } from './pages/TourSchedulePage';
 
 const INITIAL_INQUIRIES: InquirySubmission[] = [
   {
@@ -59,8 +73,48 @@ const INITIAL_APPLICATIONS: ApplicationSubmission[] = [
   },
 ];
 
+const VALID_PAGES: PageId[] = [
+  'home',
+  'about',
+  'conservation',
+  'map',
+  'amenities',
+  'eagle-cam',
+  'events',
+  'transportation',
+  'pitch-deck',
+  'request-info',
+  'apply',
+  'properties',
+  'resident-services',
+  'rentals',
+  'gallery',
+  'location',
+  'tour',
+  'property-detail',
+];
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string>('prop-lot-22');
+  const [quickViewProperty, setQuickViewProperty] = useState<PropertyItem | null>(null);
+  const [tourInitialTitle, setTourInitialTitle] = useState<string | undefined>(undefined);
+
+  // Lightbox State
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState<LightboxImageItem[]>([]);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  // Favorites State
+  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('bluffs_favorites');
+      return stored ? JSON.parse(stored) : ['prop-lot-22'];
+    } catch {
+      return ['prop-lot-22'];
+    }
+  });
+
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isResidentPortalOpen, setIsResidentPortalOpen] = useState(false);
 
@@ -101,25 +155,36 @@ export default function App() {
     }
   }, [applications]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('bluffs_favorites', JSON.stringify(favoriteIds));
+    } catch {
+      // ignore
+    }
+  }, [favoriteIds]);
+
   // URL Hash synchronization for clean bookmarkable URLs
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') as PageId;
-      const validPages: PageId[] = [
-        'home',
-        'about',
-        'conservation',
-        'map',
-        'amenities',
-        'eagle-cam',
-        'events',
-        'transportation',
-        'pitch-deck',
-        'request-info',
-        'apply',
-      ];
-      if (validPages.includes(hash)) {
-        setCurrentPage(hash);
+      const rawHash = window.location.hash.replace(/^#\/?/, '');
+      
+      if (!rawHash) {
+        setCurrentPage('home');
+        return;
+      }
+
+      // Check if hash matches property detail route: property/:id
+      if (rawHash.startsWith('property/')) {
+        const propId = rawHash.replace('property/', '');
+        if (propId) {
+          setSelectedPropertyId(propId);
+          setCurrentPage('property-detail');
+          return;
+        }
+      }
+
+      if (VALID_PAGES.includes(rawHash as PageId)) {
+        setCurrentPage(rawHash as PageId);
       }
     };
 
@@ -130,7 +195,46 @@ export default function App() {
 
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
-    window.location.hash = page;
+    if (page === 'property-detail') {
+      window.location.hash = `property/${selectedPropertyId}`;
+    } else {
+      window.location.hash = page;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleViewPropertyDetail = (id: string) => {
+    setSelectedPropertyId(id);
+    setCurrentPage('property-detail');
+    window.location.hash = `property/${id}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleViewGallery = (property: PropertyItem) => {
+    setLightboxImages(property.gallery);
+    setLightboxIndex(0);
+    setIsLightboxOpen(true);
+  };
+
+  const handleOpenLightbox = (images: LightboxImageItem[], initialIndex = 0) => {
+    setLightboxImages(images);
+    setLightboxIndex(initialIndex);
+    setIsLightboxOpen(true);
+  };
+
+  const handleQuickView = (property: PropertyItem) => {
+    setQuickViewProperty(property);
+  };
+
+  const handleScheduleTour = (propertyTitle?: string) => {
+    setTourInitialTitle(propertyTitle);
+    handleNavigate('tour');
+  };
+
+  const handleToggleFavorite = (id: string) => {
+    setFavoriteIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   const handleAddInquiry = (newInquiry: InquirySubmission) => {
@@ -163,7 +267,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F4EC] text-[#303630]">
-      {/* STICKY HEADER */}
+      {/* STICKY HEADER WITH LOGICAL DROPDOWNS & ACTIVE CTA */}
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
@@ -174,20 +278,105 @@ export default function App() {
 
       {/* MAIN CONTENT AREA */}
       <main className="flex-1">
-        {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
+        {currentPage === 'home' && (
+          <HomePage
+            onNavigate={handleNavigate}
+            onViewPropertyDetail={handleViewPropertyDetail}
+            onViewGallery={handleViewGallery}
+            onQuickView={handleQuickView}
+            onScheduleTour={handleScheduleTour}
+            favouriteIds={favoriteIds}
+            onToggleFavourite={handleToggleFavorite}
+          />
+        )}
+
         {currentPage === 'about' && <AboutPage onNavigate={handleNavigate} />}
-        {currentPage === 'conservation' && <ConservationPage onNavigate={handleNavigate} />}
-        {currentPage === 'map' && <MapPage onNavigate={handleNavigate} />}
+
+        {currentPage === 'map' && (
+          <MapPage
+            onNavigate={handleNavigate}
+            onSelectProperty={handleViewPropertyDetail}
+          />
+        )}
+
+        {currentPage === 'properties' && (
+          <PropertiesBrowsePage
+            onNavigate={handleNavigate}
+            onViewPropertyDetail={handleViewPropertyDetail}
+            onViewGallery={handleViewGallery}
+            onQuickView={handleQuickView}
+            onScheduleTour={handleScheduleTour}
+            favouriteIds={favoriteIds}
+            onToggleFavourite={handleToggleFavorite}
+          />
+        )}
+
+        {currentPage === 'property-detail' && (
+          <PropertyDetailPage
+            propertyId={selectedPropertyId}
+            onNavigate={handleNavigate}
+            onSelectProperty={handleViewPropertyDetail}
+            onViewGallery={handleOpenLightbox}
+            onScheduleTour={handleScheduleTour}
+            isFavourite={favoriteIds.includes(selectedPropertyId)}
+            onToggleFavourite={handleToggleFavorite}
+          />
+        )}
+
         {currentPage === 'amenities' && <AmenitiesPage onNavigate={handleNavigate} />}
+
+        {currentPage === 'resident-services' && (
+          <ResidentServicesPage
+            onNavigate={handleNavigate}
+            onScheduleTour={() => handleScheduleTour('Resident Services')}
+          />
+        )}
+
+        {currentPage === 'rentals' && (
+          <ManagedRentalsPage
+            onNavigate={handleNavigate}
+            onScheduleTour={() => handleScheduleTour('Managed Rentals')}
+          />
+        )}
+
+        {currentPage === 'gallery' && (
+          <GalleryPage
+            onNavigate={handleNavigate}
+            onOpenLightbox={handleOpenLightbox}
+          />
+        )}
+
+        {currentPage === 'location' && (
+          <LocationPage
+            onNavigate={handleNavigate}
+            onScheduleTour={() => handleScheduleTour('Location Inquiry')}
+          />
+        )}
+
+        {currentPage === 'conservation' && <ConservationPage onNavigate={handleNavigate} />}
+
         {currentPage === 'eagle-cam' && <EagleCamPage onNavigate={handleNavigate} />}
+
         {currentPage === 'events' && <EventsPage onNavigate={handleNavigate} />}
+
         {currentPage === 'transportation' && <TransportationPage onNavigate={handleNavigate} />}
+
         {currentPage === 'pitch-deck' && <PitchDeckPage onNavigate={handleNavigate} />}
+
         {currentPage === 'request-info' && (
           <RequestInfoPage onNavigate={handleNavigate} onSubmitInquiry={handleAddInquiry} />
         )}
+
         {currentPage === 'apply' && (
           <ApplyPage onNavigate={handleNavigate} onSubmitApplication={handleAddApplication} />
+        )}
+
+        {currentPage === 'tour' && (
+          <TourSchedulePage
+            onNavigate={handleNavigate}
+            onSubmitInquiry={handleAddInquiry}
+            initialPropertyTitle={tourInitialTitle}
+          />
         )}
       </main>
 
@@ -196,6 +385,32 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenAdmin={() => setIsAdminOpen(true)}
         onOpenResidentPortal={() => setIsResidentPortalOpen(true)}
+      />
+
+      {/* PROPERTY QUICK VIEW MODAL */}
+      <PropertyQuickView
+        property={quickViewProperty}
+        isOpen={!!quickViewProperty}
+        onClose={() => setQuickViewProperty(null)}
+        onOpenGallery={handleViewGallery}
+        onViewFullProperty={(id) => {
+          setQuickViewProperty(null);
+          handleViewPropertyDetail(id);
+        }}
+        onEnquire={(prop) => {
+          setQuickViewProperty(null);
+          handleScheduleTour(prop.title);
+        }}
+        isFavourite={quickViewProperty ? favoriteIds.includes(quickViewProperty.id) : false}
+        onToggleFavourite={handleToggleFavorite}
+      />
+
+      {/* FULLSCREEN RESPONSIVE GALLERY LIGHTBOX */}
+      <GalleryLightbox
+        isOpen={isLightboxOpen}
+        images={lightboxImages}
+        initialIndex={lightboxIndex}
+        onClose={() => setIsLightboxOpen(false)}
       />
 
       {/* ADMIN SUBMISSIONS REVIEW DRAWER */}

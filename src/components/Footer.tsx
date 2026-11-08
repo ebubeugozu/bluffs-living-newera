@@ -61,9 +61,9 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* COMMUNITY EXPLORATION LINKS */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-2 space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-[#A6B49A] font-semibold mb-3">
-              Explore Community
+              The Land
             </h4>
             <ul className="space-y-2 text-sm text-[#D9D0BF]">
               <li>
@@ -79,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => handleNav('about')}
                   className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
                 >
-                  About the Land & Vision
+                  About the Vision
                 </button>
               </li>
               <li>
@@ -87,7 +87,40 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => handleNav('map')}
                   className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
                 >
-                  Interactive Property Map
+                  Community Map
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('location')}
+                  className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
+                >
+                  Location & Driving
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('gallery')}
+                  className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
+                >
+                  Visual Gallery
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* HOMES & LIVING */}
+          <div className="md:col-span-2 space-y-3">
+            <h4 className="text-xs uppercase tracking-widest text-[#A6B49A] font-semibold mb-3">
+              Living Here
+            </h4>
+            <ul className="space-y-2 text-sm text-[#D9D0BF]">
+              <li>
+                <button
+                  onClick={() => handleNav('properties')}
+                  className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
+                >
+                  Browse Homesites
                 </button>
               </li>
               <li>
@@ -96,6 +129,22 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
                 >
                   Amenities & Utilities
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('resident-services')}
+                  className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
+                >
+                  Resident Services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('rentals')}
+                  className="hover:text-[#F7F4EC] transition-colors cursor-pointer"
+                >
+                  Managed Rentals
                 </button>
               </li>
               <li>
@@ -118,34 +167,40 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* DISCOVERY & ENGAGEMENT */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="md:col-span-3 space-y-4">
             <h4 className="text-xs uppercase tracking-widest text-[#A6B49A] font-semibold mb-3">
               Resident & Inquiries
             </h4>
             <div className="flex flex-col gap-2.5">
               <button
-                onClick={() => handleNav('request-info')}
-                className="w-full text-center py-2 px-4 rounded-md border border-[#A6B49A]/40 text-[#F7F4EC] hover:bg-[#183B2B] text-xs font-semibold tracking-wider uppercase transition-colors"
+                onClick={() => handleNav('tour')}
+                className="w-full text-center py-2.5 px-4 rounded-md bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] text-xs font-semibold tracking-wider uppercase transition-colors shadow-sm cursor-pointer"
               >
-                Request Information & Tour
+                Schedule Private Tour
+              </button>
+              <button
+                onClick={() => handleNav('request-info')}
+                className="w-full text-center py-2 px-4 rounded-md border border-[#A6B49A]/40 text-[#F7F4EC] hover:bg-[#183B2B] text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
+              >
+                Request Information
               </button>
               <button
                 onClick={() => handleNav('apply')}
-                className="w-full text-center py-2 px-4 rounded-md bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] text-xs font-semibold tracking-wider uppercase transition-colors"
+                className="w-full text-center py-2 px-4 rounded-md border border-[#A6B49A]/20 bg-[#183B2B]/60 hover:bg-[#183B2B] text-[#D9D0BF] hover:text-[#F7F4EC] text-xs font-semibold tracking-wider uppercase transition-colors cursor-pointer"
               >
-                Submit Resident Application
+                Submit Application
               </button>
               <button
                 onClick={onOpenResidentPortal}
-                className="w-full flex items-center justify-center gap-2 text-center py-2 px-4 rounded-md bg-[#183B2B]/60 text-[#A6B49A] hover:text-[#F7F4EC] text-xs font-medium transition-colors"
+                className="w-full flex items-center justify-center gap-2 text-center py-2 px-4 rounded-md bg-[#183B2B]/40 text-[#A6B49A] hover:text-[#F7F4EC] text-xs font-medium transition-colors cursor-pointer"
               >
                 <Lock size={12} />
-                <span>Resident Portal (DocuSign Lease Vault)</span>
+                <span>Resident Portal (DocuSign Vault)</span>
               </button>
             </div>
 
             {/* Social channels */}
-            <div className="pt-3">
+            <div className="pt-2">
               <span className="text-[11px] uppercase tracking-wider text-[#A6B49A] block mb-2 font-medium">
                 Official Channels
               </span>
@@ -156,7 +211,7 @@ export const Footer: React.FC<FooterProps> = ({
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-[#B28B5B] transition-colors"
                 >
-                  <Instagram size={16} />
+                  <Instagram size={15} />
                   <span>@bluffsnewera</span>
                 </a>
                 <a
@@ -165,7 +220,7 @@ export const Footer: React.FC<FooterProps> = ({
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-[#B28B5B] transition-colors"
                 >
-                  <Facebook size={16} />
+                  <Facebook size={15} />
                   <span>@bluffsnewera</span>
                 </a>
               </div>

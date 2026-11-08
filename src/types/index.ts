@@ -1,15 +1,70 @@
 export type PageId =
   | 'home'
   | 'about'
-  | 'conservation'
   | 'map'
+  | 'properties'
+  | 'property-detail'
   | 'amenities'
+  | 'resident-services'
+  | 'rentals'
+  | 'gallery'
+  | 'location'
+  | 'transportation'
+  | 'conservation'
   | 'eagle-cam'
   | 'events'
-  | 'transportation'
   | 'pitch-deck'
   | 'request-info'
-  | 'apply';
+  | 'apply'
+  | 'tour';
+
+export interface PropertyItem {
+  id: string;
+  lotNumber: string;
+  title: string;
+  propertyType: 'homesite' | 'turnkey-home' | 'riverfront-premium';
+  transactionType: 'lease' | 'purchase' | 'rent-to-own';
+  status: 'Available' | 'Under Contract' | 'Reserved';
+  priceDisplay: string;
+  monthlyLease?: string;
+  purchasePrice?: string;
+  lotSizeSqFt: number;
+  homeSqFt?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  setting: 'River Bluff View' | 'Hardwood Ridge' | 'Wooded Meadow' | 'Direct Riverfront';
+  orientation: 'Sunset River View' | 'Sunrise Ridge' | 'Southern Exposure';
+  elevation: string;
+  heroImage: string;
+  gallery: string[];
+  features: string[];
+  shortDesc: string;
+  fullDescription: string;
+  utilitiesReady: string[];
+  mapCoordinates: { x: number; y: number };
+  dimensions: string;
+  similarPropertyIds?: string[];
+  faqs?: { question: string; answer: string }[];
+}
+
+export interface PropertyFilters {
+  propertyType: string;
+  transactionType: string;
+  setting: string;
+  priceRange: string;
+  minLotSize: string;
+  status: string;
+  searchQuery: string;
+}
+
+export interface GalleryPhoto {
+  id: string;
+  url: string;
+  title: string;
+  category: 'River & Bluffs' | 'Homes & Architecture' | 'Nature & Trails' | 'Community Amenities' | 'Wildlife';
+  caption: string;
+  aspectRatio?: 'landscape' | 'portrait' | 'square';
+}
 
 export interface MapPointOfInterest {
   id: string;
@@ -23,6 +78,7 @@ export interface MapPointOfInterest {
   features: string[];
   status?: 'Available' | 'Reserved' | 'Active Community Feature' | 'Preserved';
   imagePlaceholderTitle?: string;
+  propertyId?: string; // Links to PropertyItem if homesite
 }
 
 export interface AmenityItem {
@@ -33,6 +89,8 @@ export interface AmenityItem {
   details: string[];
   included: boolean; // false if optional/proposed
   badge?: string;
+  iconName?: string;
+  image?: string;
 }
 
 export interface EventItem {
@@ -45,6 +103,7 @@ export interface EventItem {
   season: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
   status: 'Upcoming' | 'Past';
   attendeeCount: number;
+  image?: string;
 }
 
 export interface DestinationDistance {
@@ -54,6 +113,7 @@ export interface DestinationDistance {
   driveTimeMins: number;
   description: string;
   directionsUrl?: string;
+  routeHighlights?: string;
 }
 
 export interface PitchDeckSlide {
@@ -66,6 +126,7 @@ export interface PitchDeckSlide {
     label: string;
   };
   narrative: string;
+  image?: string;
 }
 
 export interface InquirySubmission {
@@ -75,6 +136,7 @@ export interface InquirySubmission {
   email: string;
   phone?: string;
   inquiryType: string;
+  propertyOfInterest?: string;
   message: string;
   status: 'New' | 'Contacted' | 'Tour Scheduled';
 }

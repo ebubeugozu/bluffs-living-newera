@@ -5,9 +5,10 @@ import { MapPin, Compass, Mountain, Trees, Waves } from 'lucide-react';
 
 interface MapPageProps {
   onNavigate: (page: PageId) => void;
+  onSelectProperty?: (id: string) => void;
 }
 
-export const MapPage: React.FC<MapPageProps> = ({ onNavigate }) => {
+export const MapPage: React.FC<MapPageProps> = ({ onNavigate, onSelectProperty }) => {
   return (
     <div className="bg-[#F7F4EC] text-[#303630]">
       
@@ -39,10 +40,16 @@ export const MapPage: React.FC<MapPageProps> = ({ onNavigate }) => {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => onNavigate('request-info')}
+              onClick={() => onNavigate('properties')}
+              className="px-3.5 py-1.5 border border-[#183B2B] text-[#183B2B] hover:bg-[#183B2B] hover:text-[#F7F4EC] font-semibold rounded text-xs transition-colors cursor-pointer"
+            >
+              Browse Inventory
+            </button>
+            <button
+              onClick={() => onNavigate('tour')}
               className="px-3.5 py-1.5 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold rounded text-xs transition-colors cursor-pointer"
             >
-              Inquire About Homesites
+              Schedule a Tour
             </button>
           </div>
         </div>
@@ -50,7 +57,8 @@ export const MapPage: React.FC<MapPageProps> = ({ onNavigate }) => {
         {/* FULL INTERACTIVE MAP INSTANCE */}
         <InteractiveMapComponent
           fullHeight={true}
-          onNavigateToInquiry={() => onNavigate('request-info')}
+          onSelectProperty={onSelectProperty}
+          onNavigateToInquiry={() => onNavigate('tour')}
         />
 
         {/* MAP LEGEND / ACCURACY NOTE */}

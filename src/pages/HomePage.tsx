@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Compass,
   ArrowRight,
@@ -14,21 +14,55 @@ import {
   ChevronRight,
   Flame,
   Check,
+  Search,
 } from 'lucide-react';
-import { PageId } from '../types';
-import { PROPERTY_STATS } from '../data/communityData';
+import { PageId, PropertyItem, PropertyFilters } from '../types';
+import { PROPERTY_STATS, PROPERTY_LISTINGS } from '../data/communityData';
 import { InteractiveMapComponent } from '../components/InteractiveMapComponent';
+import { PropertyCard } from '../components/PropertyCard';
+import { PropertySearchPanel } from '../components/PropertySearchPanel';
+import { ImageWithFallback } from '../components/ImageWithFallback';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
+  onViewPropertyDetail: (id: string) => void;
+  onViewGallery: (property: PropertyItem) => void;
+  onQuickView: (property: PropertyItem) => void;
+  onScheduleTour: (propertyTitle?: string) => void;
+  favouriteIds?: string[];
+  onToggleFavourite?: (id: string) => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+export const HomePage: React.FC<HomePageProps> = ({
+  onNavigate,
+  onViewPropertyDetail,
+  onViewGallery,
+  onQuickView,
+  onScheduleTour,
+  favouriteIds = [],
+  onToggleFavourite,
+}) => {
+  const [heroSearchFilters, setHeroSearchFilters] = useState<PropertyFilters>({
+    propertyType: 'all',
+    transactionType: 'all',
+    setting: 'all',
+    priceRange: 'all',
+    minLotSize: 'all',
+    status: 'all',
+    searchQuery: '',
+  });
+
+  const featuredProperties = PROPERTY_LISTINGS.slice(0, 3);
+
+  const handleSearchSubmit = () => {
+    onNavigate('properties');
+  };
+
   return (
     <div className="bg-[#F7F4EC] text-[#303630]">
       
       {/* 1. CINEMATIC HERO SECTION */}
-      <section className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center bg-[#10291F] text-[#F7F4EC] overflow-hidden px-4 sm:px-6 lg:px-8 py-20">
+      <section className="relative min-h-[82vh] lg:min-h-[88vh] flex items-center justify-center bg-[#10291F] text-[#F7F4EC] overflow-hidden px-4 sm:px-6 lg:px-8 pt-16 pb-28">
         
         {/* ATMOSPHERIC BACKGROUND GRAPHIC: RIVER BLUFF AT SUNRISE */}
         <div className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity pointer-events-none">
@@ -46,12 +80,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </linearGradient>
             </defs>
             <rect width="1440" height="900" fill="url(#skyGrad)" />
-            {/* Mountain Ridge Silhouettes */}
             <path d="M 0,420 Q 380,310 720,380 T 1440,340 L 1440,900 L 0,900 Z" fill="#143224" opacity="0.6" />
             <path d="M 0,510 Q 480,410 960,490 T 1440,460 L 1440,900 L 0,900 Z" fill="#183B2B" opacity="0.8" />
-            {/* The Tennessee River sweeping bend */}
             <path d="M 0,650 C 400,620 700,740 1440,680 L 1440,820 C 800,880 300,760 0,780 Z" fill="url(#riverShimmer)" />
-            {/* Forefront pine ridge canopy */}
             <path d="M 0,680 Q 240,640 480,700 T 960,670 T 1440,710 L 1440,900 L 0,900 Z" fill="#10291F" />
           </svg>
         </div>
@@ -81,23 +112,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* CALL TO ACTION BUTTONS */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => onNavigate('map')}
+              onClick={() => onNavigate('properties')}
               className="w-full sm:w-auto px-7 py-3.5 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold text-xs tracking-wider uppercase rounded-md transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Explore the Community</span>
+              <span>Explore Available Homesites</span>
               <ArrowRight size={15} />
             </button>
 
             <button
-              onClick={() => onNavigate('request-info')}
+              onClick={() => onScheduleTour()}
               className="w-full sm:w-auto px-7 py-3.5 border border-[#A6B49A]/40 text-[#F7F4EC] hover:bg-[#183B2B] font-semibold text-xs tracking-wider uppercase rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Request Information</span>
+              <Calendar size={15} />
+              <span>Schedule Private Tour</span>
             </button>
           </div>
 
           {/* RIVER VISTA QUICK STATS STRIP */}
-          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#A6B49A]/20 max-w-3xl mx-auto text-left">
+          <div className="pt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#A6B49A]/20 max-w-3xl mx-auto text-left">
             <div>
               <div className="font-serif text-2xl sm:text-3xl font-bold text-[#F7F4EC] tabular-nums">
                 140
@@ -136,6 +168,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       </section>
 
+      {/* INTEGRATED HERO PROPERTY SEARCH PANEL (ELEGANTLY OVERLAPPING TRANSITION) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 relative z-20">
+        <PropertySearchPanel
+          filters={heroSearchFilters}
+          onFilterChange={setHeroSearchFilters}
+          onSearchSubmit={handleSearchSubmit}
+          resultCount={PROPERTY_LISTINGS.length}
+        />
+      </section>
+
       {/* 2. PROPERTY INTRODUCTION */}
       <section className="py-20 lg:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -148,26 +190,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               More Than a Place to Live. A Place to Belong.
             </h2>
             <p className="text-base text-[#303630]/85 font-sans leading-relaxed">
-              The Bluffs at New Era is a nature-focused boutique community designed around personal privacy, generous open space, thoughtful infrastructure, and deep reverence for the surrounding Tennessee River valley.
+              The Bluffs at New Era is a nature-focused boutique community designed around personal privacy, generous open space, thoughtful amenities, and an appreciation for the surrounding environment.
             </p>
             <p className="text-sm text-[#303630]/75 font-sans leading-relaxed">
               Unlike typical tiny-home developments that crowd small pads together in cleared fields, The Bluffs preserves approximately 140 acres of mature hardwood ridges, sandstone blufflines, and quiet hollows. Each private homesite provides 6,000+ square feet of wooded seclusion, dedicated underground city utilities, and direct access to half a mile of riverfront.
             </p>
 
-            <div className="pt-2 flex items-center gap-6">
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => onNavigate('about')}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#183B2B] hover:text-[#B28B5B] transition-colors group cursor-pointer"
+                className="px-6 py-3 bg-[#183B2B] hover:bg-[#10291F] text-[#F7F4EC] text-xs font-semibold tracking-wider uppercase rounded-md transition-colors cursor-pointer"
               >
-                <span>Read Our Vision & Story</span>
-                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                Read Community Story
+              </button>
+              <button
+                onClick={() => onScheduleTour()}
+                className="px-6 py-3 border border-[#183B2B] text-[#183B2B] hover:bg-[#183B2B] hover:text-[#F7F4EC] text-xs font-semibold tracking-wider uppercase rounded-md transition-colors cursor-pointer"
+              >
+                Schedule a Visit
               </button>
             </div>
           </div>
 
           <div className="lg:col-span-5 bg-[#183B2B] text-[#F7F4EC] p-8 sm:p-10 rounded-2xl shadow-xl space-y-6 border border-[#A6B49A]/20">
             <h3 className="font-serif text-2xl font-semibold text-[#F7F4EC]">
-              Key Property Highlights
+              Verified Community Scale
             </h3>
             <ul className="space-y-4 text-sm divide-y divide-[#A6B49A]/20">
               <li className="pt-3 first:pt-0 flex items-start gap-3">
@@ -204,6 +251,49 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
+      {/* FEATURED AVAILABLE HOMESITES STRIP */}
+      <section className="py-20 bg-[#FFFFFF] border-t border-b border-[#D9D0BF]/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#183B2B]">
+                Phase 1 Inventory
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#183B2B]">
+                Featured Available Homes & Homesites
+              </h2>
+              <p className="text-sm text-[#303630]/75 max-w-xl">
+                Explore a selection of our most scenic parcels, each featuring certified underground utilities, fiber drops, and dedicated building pads.
+              </p>
+            </div>
+
+            <button
+              onClick={() => onNavigate('properties')}
+              className="px-6 py-3 bg-[#183B2B] hover:bg-[#10291F] text-[#F7F4EC] text-xs font-semibold tracking-wider uppercase rounded-md transition-colors self-start md:self-auto shrink-0 cursor-pointer shadow-sm"
+            >
+              Browse All Properties ({PROPERTY_LISTINGS.length})
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProperties.map((prop) => (
+              <PropertyCard
+                key={prop.id}
+                property={prop}
+                onViewGallery={onViewGallery}
+                onQuickView={onQuickView}
+                onViewFullProperty={onViewPropertyDetail}
+                onEnquire={() => onScheduleTour(prop.title)}
+                isFavourite={favouriteIds.includes(prop.id)}
+                onToggleFavourite={onToggleFavourite}
+              />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       {/* 3. INTERACTIVE MAP PREVIEW */}
       <section className="py-16 bg-[#183B2B] text-[#F7F4EC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -223,7 +313,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('map')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#F7F4EC] hover:bg-[#FFFFFF] text-[#183B2B] font-semibold text-xs tracking-wider uppercase rounded-md transition-colors cursor-pointer self-start md:self-auto shrink-0"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#F7F4EC] hover:bg-[#FFFFFF] text-[#183B2B] font-semibold text-xs tracking-wider uppercase rounded-md transition-colors cursor-pointer self-start md:self-auto shrink-0 shadow-md"
             >
               <span>Explore the Interactive Map</span>
               <ArrowRight size={15} />
@@ -231,7 +321,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Embedded Interactive Map Preview */}
-          <InteractiveMapComponent onNavigateToInquiry={() => onNavigate('request-info')} />
+          <InteractiveMapComponent
+            onSelectProperty={onViewPropertyDetail}
+            onNavigateToInquiry={() => onScheduleTour('Site Map Inquiries')}
+          />
 
         </div>
       </section>
@@ -251,7 +344,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1: Utilities */}
           <div className="bg-[#FFFFFF] p-8 rounded-xl border border-[#D9D0BF]/60 shadow-sm flex flex-col justify-between">
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">
@@ -260,7 +352,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <h3 className="font-serif text-2xl font-semibold text-[#183B2B]">
                 Underground Utilities & Fiber
               </h3>
-              <p className="text-sm text-[#303630]/80 leading-relaxed">
+              <p className="text-sm text-[#303630]/80 leading-relaxed font-sans">
                 City water, modern subterranean electrical conduits (50A/100A), high-speed fiber internet drops, and weekly curbside refuse collection directly at each homesite.
               </p>
             </div>
@@ -269,7 +361,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Card 2: Outdoor Amenities */}
           <div className="bg-[#FFFFFF] p-8 rounded-xl border border-[#D9D0BF]/60 shadow-sm flex flex-col justify-between">
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">
@@ -278,7 +369,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <h3 className="font-serif text-2xl font-semibold text-[#183B2B]">
                 Riverfront & Nature Trails
               </h3>
-              <p className="text-sm text-[#303630]/80 leading-relaxed">
+              <p className="text-sm text-[#303630]/80 leading-relaxed font-sans">
                 Direct shoreline launch for kayaks, miles of bluffs trails, community raised-bed vegetable gardens, a heritage chicken coop, and the sunset fire-circle hearth.
               </p>
             </div>
@@ -287,7 +378,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Card 3: Peace of Mind */}
           <div className="bg-[#FFFFFF] p-8 rounded-xl border border-[#D9D0BF]/60 shadow-sm flex flex-col justify-between">
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">
@@ -296,7 +386,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <h3 className="font-serif text-2xl font-semibold text-[#183B2B]">
                 Certified Helipad & Stewardship
               </h3>
-              <p className="text-sm text-[#303630]/80 leading-relaxed">
+              <p className="text-sm text-[#303630]/80 leading-relaxed font-sans">
                 Gated keypad entry, year-round road grading, onsite stewardship coordination, and a dedicated helipad for LifeFlight medical air transport staging.
               </p>
             </div>
@@ -309,10 +399,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="text-center pt-10">
           <button
             onClick={() => onNavigate('amenities')}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#183B2B] hover:text-[#B28B5B] transition-colors group cursor-pointer"
+            className="px-6 py-3 bg-[#183B2B] hover:bg-[#10291F] text-[#F7F4EC] text-xs font-semibold tracking-wider uppercase rounded-md transition-colors cursor-pointer shadow-md inline-flex items-center gap-2"
           >
-            <span>View All Amenities & Service Standards</span>
-            <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            <span>Explore All Amenities & Services</span>
+            <ArrowRight size={14} />
           </button>
         </div>
       </section>
@@ -330,10 +420,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Preserving the Land. Respecting the Landscape.
               </h2>
               <p className="text-sm text-[#D9D0BF] leading-relaxed">
-                Prior to any roadway or homesite construction, a comprehensive ecological and conservation study was conducted to inventory the property’s native hardwood canopies, protect the river’s limestone watershed, and establish strict buffer corridors around active bald eagle territories.
-              </p>
-              <p className="text-xs text-[#A6B49A] leading-relaxed">
-                Our Dark-Sky covenants and permeable pad engineering ensure minimal ecological disturbance, protecting Tennessee’s nighttime skies and nocturnal wildlife.
+                Prior to any roadway or homesite construction, a comprehensive ecological and conservation study was conducted to inventory the property's native hardwood canopies, protect the river's limestone watershed, and establish strict buffer corridors around active bald eagle territories.
               </p>
               <div>
                 <button
@@ -387,7 +474,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-[#FFFFFF] p-6 rounded-xl border border-[#D9D0BF]/60 space-y-3">
+          <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#D9D0BF]/60 space-y-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">Water & Fishing</span>
             <h4 className="font-serif text-xl font-medium text-[#183B2B]">Tennessee River Exploration</h4>
             <p className="text-xs text-[#303630]/80 leading-relaxed">
@@ -395,7 +482,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="bg-[#FFFFFF] p-6 rounded-xl border border-[#D9D0BF]/60 space-y-3">
+          <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#D9D0BF]/60 space-y-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">Organic Harvest</span>
             <h4 className="font-serif text-xl font-medium text-[#183B2B]">Gardens, Coop & Apiary</h4>
             <p className="text-xs text-[#303630]/80 leading-relaxed">
@@ -403,7 +490,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="bg-[#FFFFFF] p-6 rounded-xl border border-[#D9D0BF]/60 space-y-3">
+          <div className="bg-[#FFFFFF] p-6 rounded-2xl border border-[#D9D0BF]/60 space-y-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#B28B5B]">Community Hearth</span>
             <h4 className="font-serif text-xl font-medium text-[#183B2B]">The Fire Circle at Sunset</h4>
             <p className="text-xs text-[#303630]/80 leading-relaxed">
@@ -473,14 +560,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => onNavigate('request-info')}
-              className="w-full sm:w-auto px-8 py-3.5 border border-[#A6B49A]/40 text-[#F7F4EC] hover:bg-[#183B2B] font-semibold text-xs tracking-wider uppercase rounded-md transition-all cursor-pointer"
+              onClick={() => onScheduleTour()}
+              className="w-full sm:w-auto px-8 py-3.5 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold text-xs tracking-wider uppercase rounded-md transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2"
             >
-              Request Information
+              <Calendar size={15} />
+              <span>Schedule a Private Tour</span>
             </button>
             <button
               onClick={() => onNavigate('apply')}
-              className="w-full sm:w-auto px-8 py-3.5 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold text-xs tracking-wider uppercase rounded-md transition-all cursor-pointer shadow-lg"
+              className="w-full sm:w-auto px-8 py-3.5 border border-[#A6B49A]/40 text-[#F7F4EC] hover:bg-[#183B2B] font-semibold text-xs tracking-wider uppercase rounded-md transition-all cursor-pointer"
             >
               Apply to The Bluffs
             </button>

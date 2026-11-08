@@ -21,12 +21,16 @@ import { MAP_POINTS_OF_INTEREST } from '../data/communityData';
 interface InteractiveMapProps {
   initialSelectedId?: string;
   onNavigateToInquiry?: () => void;
+  onSelectProperty?: (propertyId: string) => void;
+  onQuickViewProperty?: (propertyId: string) => void;
   fullHeight?: boolean;
 }
 
 export const InteractiveMapComponent: React.FC<InteractiveMapProps> = ({
   initialSelectedId,
   onNavigateToInquiry,
+  onSelectProperty,
+  onQuickViewProperty,
   fullHeight = false,
 }) => {
   const [selectedPoi, setSelectedPoi] = useState<MapPointOfInterest | null>(
@@ -482,14 +486,27 @@ export const InteractiveMapComponent: React.FC<InteractiveMapProps> = ({
               </ul>
             </div>
 
-            {selectedPoi.category === 'homesite' && onNavigateToInquiry && (
-              <button
-                onClick={onNavigateToInquiry}
-                className="w-full py-2.5 px-4 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold text-xs tracking-wider uppercase rounded-md transition-colors"
-              >
-                Inquire About This Homesite
-              </button>
-            )}
+            {/* Dedicated Action Buttons for Homesite vs General POI */}
+            <div className="space-y-2 pt-2">
+              {selectedPoi.category === 'homesite' && onSelectProperty && (
+                <button
+                  onClick={() => onSelectProperty(selectedPoi.id === 'poi-ridge-homesites' ? 'prop-lot-04' : selectedPoi.id === 'poi-meadow-homesites' ? 'prop-lot-14' : 'prop-lot-22')}
+                  className="w-full py-2.5 px-4 bg-[#B28B5B] hover:bg-[#c29865] text-[#10291F] font-semibold text-xs tracking-wider uppercase rounded-md transition-colors cursor-pointer shadow-sm flex items-center justify-center gap-1.5"
+                >
+                  <span>View Dedicated Property Page</span>
+                  <ChevronRight size={14} />
+                </button>
+              )}
+
+              {onNavigateToInquiry && (
+                <button
+                  onClick={onNavigateToInquiry}
+                  className="w-full py-2 px-4 bg-[#10291F] hover:bg-[#122A20] border border-[#A6B49A]/30 text-[#F7F4EC] font-semibold text-xs tracking-wider uppercase rounded-md transition-colors cursor-pointer"
+                >
+                  Schedule Tour for this Location
+                </button>
+              )}
+            </div>
           </div>
         ) : (
           <div className="p-4 bg-[#10291F]/40 border-b border-[#A6B49A]/15 text-xs text-[#D9D0BF]">
